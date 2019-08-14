@@ -7,6 +7,7 @@ import {
     setFirstHalfCorrect,
     setSecondHalfCorrect
 }                                   from "../storage/ResultStorage";
+import {sessionToken}               from "../storage/TokenStorage";
 
 
 export const Experiment = withRouter(({history}) => {
@@ -50,6 +51,11 @@ export const Experiment = withRouter(({history}) => {
     const [choiceSet, setChoiceSet] = useState([]);
 
     useEffect(() => {
+
+        if (!sessionToken) {
+            history.push("/error");
+        }
+
         const timerRef = setInterval(() => {
             setTimeLeft(timeLeft => timeLeft - 1);
         }, 1000);
