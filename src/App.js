@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React           from 'react';
+import {Route, Switch} from "react-router-dom";
+import {WelcomePage}   from "./pages/WelcomePage";
+import {Experiment}    from "./pages/Experiment";
+import styled          from 'styled-components';
+import {Result}        from "./pages/Result";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Container>
+            <Switch>
+                <Route exact path="/" component={WelcomePage}/>
+                <Route exact path="/experiment" component={Experiment}/>
+                <Route exact path="/results" component={Result}/>
+            </Switch>
+        </Container>
+    );
 }
+
+const Container = styled.div`
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+`;
 
 export default App;
